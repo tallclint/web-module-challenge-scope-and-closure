@@ -5,6 +5,7 @@
  * 
  * Use the higher order function processFirstItem below to do the following:
  *  1. Receive an array of strings in a parameter
+ * 
  *  2. Receive a callback function that takes a string as its argument in a parameter
  *  3. Return the result of invoking the callback function and passing in the FIRST 
  *     element in the array as the argument
@@ -20,7 +21,6 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
 
 // ⭐️ Example Challenge END ⭐️
 
-console.log('jonah');
 ///// M V P ///////
 
 /*Task 1: counterMaker()
@@ -28,13 +28,14 @@ console.log('jonah');
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-        counter 1 has correct closure and will store the ammount of times it is called
+        The only time we would need the counter2 is if we needed to access the count variable locally
   2. Which of the two uses a closure? How can you tell?
-      number 1 because it has the variable inside of the function not outside
+        The counter 1 uses a closure because it makes use of the varibles that exists inside of the function in which it was called.  
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
-     counter one would be to keep track of how many times the counter was called 
-     counter two would be to simply add slowly 
+        counter1 would be preferable when you will need one instance of the variable and you want multiple functions to
+        have access to that variable.
+        counter2 would be preferable if you want to be able to create multiple instances of the same variable and don't want other parts of your code to have access to it
 */
 
 // counter1 code
@@ -66,11 +67,11 @@ Use the inning function below to do the following:
   
 NOTE: This will be a callback function for the tasks below
 */
-
-function inning(){
-  return Math.floor(Math.random() * Math.floor(3))
-
+function inning() {
+  return Math.floor(Math.random() * 3);
 }
+console.log('task2')
+console.log(inning());
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
   1. Receive the callback function `inning` that was created in Task 2 
