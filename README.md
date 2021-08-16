@@ -36,7 +36,7 @@ Using VSCode and Command Line:
 4. open the terminal in your vs code and type `npm install`
 5. next type `npm run test` in your terminal
 6. Complete your work making regular commits, once you have all your tests passing and you are ready to submit your work please see canvas for instructions on how to submit
-
+ 
 
 ### Task 2a - MVP code
 
