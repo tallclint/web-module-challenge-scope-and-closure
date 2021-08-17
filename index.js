@@ -33,8 +33,8 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
         The counter 1 uses a closure because it makes use of the varibles that exists inside of the function in which it was called.  
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
-        counter1 would be preferable when you will need one instance of the variable and you want multiple functions to
-        have access to that variable.
+        counter1 would be preferable when you will need one instance of the variable and you want multiple functions to have access to that variable.
+        
         counter2 would be preferable if you want to be able to create multiple instances of the same variable and don't want other parts of your code to have access to it
 */
 
@@ -86,21 +86,19 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(inningCB, numberOfInnings){
- 
-  const score = { 'Home': 0 , 'Away': 0}
-
-  for (let i = 0; i < numberOfInnings; i++) {
-    score.Away += inningCB();
-    score.Home += inningCB();
+function finalScore(funct, numOfInnings) {
+  const score = {};
+  score.Home = 0;
+  score.Away = 0;
+  const score = { Home: 0, Away: 0 };
+  for (let i = 0; i < numOfInnings; i++) {
+    score.Home += funct();
+    score.Away += funct();
   }
-   return score;
-  
+  return score;
 }
 
-console.log('task 3', finalScore(inning,9));
-console.log('task 3', finalScore(inning,9));
-console.log('task 3', finalScore(inning,9));
+console.log(finalScore(inning, 9));
 
 
 

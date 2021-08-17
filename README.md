@@ -60,13 +60,16 @@ Edit the `ReadMe` file with your answers to the questions below.
 
 1. In your own words, define closure (1-2 sentences).
 closure is using the block scope to be able to keep a certain information and function to be used as a computer inside of a computer
+
+A JavaScript closure is when an inner function has access to its outer enclosing function's variables and properties.
+
 2. Study the following code, then answer the questions below.
 
 
 ```js
 function personalDice(name){
   return function(){
-      // generate random number between 1 and 6
+
     const newRoll = Math.floor(Math.random() * 6);
     console.log(`${name} rolled a ${newRoll}`)
   }
@@ -82,8 +85,18 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+
+The closure is used inside of the returned function. When you call the returned function, it has access to the variable "name" which doesn't exist inside its own scope, but exists inside of the closure.
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+
+The closure, 'name', and its assigned value stay the same 
+dansRoll is a function definition. Inside of it newRoll is declared and assigned
+newRoll will keep generating a new value each time the function is called
+
 c. What is the lexical scope of `newRoll`? 
+
+The lexical scope of newRoll is the returned function. Here, because the returned function was saved to dansRoll, this is the lexical scope of newRoll
 
 
 ### Task 3 - Stretch Goals
