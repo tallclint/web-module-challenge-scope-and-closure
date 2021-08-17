@@ -34,7 +34,7 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
         counter1 would be preferable when you will need one instance of the variable and you want multiple functions to have access to that variable.
-        
+
         counter2 would be preferable if you want to be able to create multiple instances of the same variable and don't want other parts of your code to have access to it
 */
 
@@ -54,23 +54,19 @@ console.log(counter1());
 // counter2 code
 let count = 0;
 
-function counter2() {
+function counter2(){
   return count++;
 }
-
-
 /* ⚾️⚾️⚾️ Task 2: inning() ⚾️⚾️⚾️
 Use the inning function below to do the following:
   1. Return a random whole number of points between 0 and 2 scored by one team in an inning
   
   For example: invoking inning() should return a numerical score value of 0, 1, or 2
   
-NOTE: This will be a callback function for the tasks below
-*/
-function inning() {
+NOTE: This will be a callback function for the tasks below */
+function inning(){
   return Math.floor(Math.random() * 3);
 }
-console.log('task2')
 console.log(inning());
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -83,22 +79,17 @@ Use the finalScore function below to do the following:
 {
   "Home": 11,
   "Away": 5
-}
-*/ 
-
-function finalScore(funct, numOfInnings) {
-  const score = {};
-  score.Home = 0;
-  score.Away = 0;
-  const score = { Home: 0, Away: 0 };
-  for (let i = 0; i < numOfInnings; i++) {
-    score.Home += funct();
-    score.Away += funct();
+} */ 
+function finalScore(inningCB, numberOfInnings){
+  const score = { 'Home': 0 , 'Away': 0}
+  for (let i = 0; i < numberOfInnings; i++) {
+    score.Away += inningCB();
+    score.Home += inningCB();
   }
-  return score;
+   return score;
 }
+console.log(finalScore(inning,9));
 
-console.log(finalScore(inning, 9));
 
 
 
@@ -106,17 +97,19 @@ console.log(finalScore(inning, 9));
 Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
-
-function getInningScore(inningCB) {
-  
-
-
-   return {'Away': inningCB(),'Home':inningCB()};
-
-    
-}
-
-console.log(getInningScore(inning));
+  function getInningScore(callback, inningsPlayed){
+    const totalGame = [];
+    let home = 0;
+    let away = 0;
+    for(let i = 0; i < 9; i++){
+        const currentScore = inningsPlayed(callback);
+        home += callback();
+        away += callback();
+        totalGame.push(`Inning ${i + 1}: Away ${currentScore.away} - Home ${currentScore.home}`);
+    }
+    return totalGame;
+  }
+  console.log(getInningScore(inning, finalScore));
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
@@ -158,10 +151,26 @@ Use the scoreboard function below to do the following:
   "This game will require extra innings: Away 10 - Home 10"
 ]  
   */
-
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(callback, num){
+  let home = 0;
+  let away = 0;
+  for (let  i = 0;  i < num;  i++) {
+    home += callback();
+    away += callback();
+    if (i === 0){
+      console.log("1st inning: " + home + " - " + away );
+    } else if (i === 1){
+      console.log("2nd inning: " + home + " - " + away );
+    } else if (i === 2){
+      console.log("3rd inning: " + home + " - " + away );
+    } else {
+      console.log(i + 1 + "th inning: " + home + " - " + away );
+    }
+  }
+  console.log(); 
+  return "Final Score:  " + home +" - "+ away;
 }
+console.log(scoreboard(inning, 9));  
 
 
 
@@ -182,3 +191,4 @@ module.exports = {
   getInningScore,
   scoreboard,
 }
+  
